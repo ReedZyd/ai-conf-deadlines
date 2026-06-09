@@ -70,6 +70,16 @@ SPECIAL = {
     "ICPR":    ("其他 CV/视觉", False, ["CV"]),
 }
 
+# 排除：数据库 / 数据工程系统类 + 中文/区域性会议（保留数据挖掘/检索）
+EXCLUDE_TITLES = {
+    # 数据库 / 数据工程
+    "SIGMOD", "VLDB", "ICDE", "EDBT", "PODS", "ICDT",
+    "DASFAA", "CIDR", "APWeb-WAIM", "WISA",
+    # 中文 / 区域性
+    "NLPCC", "CICAI", "NCMMSC", "CVM", "ICVRV", "PRCV",
+    "ADMA", "ICIC", "KSEM", "CCF",
+}
+
 # 按 sub 的默认分类（未在 SPECIAL 中的会议）
 SUB_DEFAULT = {
     "AI": ("机器学习/ML", ["ML"]),
@@ -273,6 +283,8 @@ def build():
         conf = src[title]
         sub = str(conf.get("sub", ""))
         if sub not in INCLUDE_SUBS or not title or title == "None":
+            continue
+        if title in EXCLUDE_TITLES:
             continue
         if title in SPECIAL:
             category, highlight, tags = SPECIAL[title]

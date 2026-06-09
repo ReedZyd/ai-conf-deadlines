@@ -1,5 +1,5 @@
 // 本文件由 update.py 自动生成，请勿手改（ARR 除外）。
-// 生成时间: 2026-06-09T15:23:20.250400+00:00
+// 生成时间: 2026-06-09T15:28:53.303527+00:00
 
 const CATEGORIES = ["AI 三大会", "ARR (ACL Rolling Review)", "NLP", "综合 AI", "多智能体", "CV 三大会", "其他 CV/视觉", "Robotics", "机器学习/ML", "数据挖掘/检索", "图形/语音/多媒体", "Web/交叉应用"];
 
@@ -213,28 +213,6 @@ const CONFERENCES = [
     "lon": 144.96
   },
   {
-    "name": "ADMA 2026",
-    "full": "The International Conference on Advanced Data Mining and Applications",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": false,
-    "tags": [
-      "DM"
-    ],
-    "abstract": null,
-    "deadline": "2026-06-26T23:59:59-12:00",
-    "conf_date": "November 13 - 15, 2026",
-    "place": "Hong Kong, China",
-    "link": "https://adma2026.github.io/",
-    "venue": "Hong Kong, China",
-    "venue_year": 2026,
-    "venue_date": "November 13 - 15, 2026",
-    "venue_end": "2026-11-15",
-    "year": 2026,
-    "lat": 22.32,
-    "lon": 114.17
-  },
-  {
     "name": "AFT 2027",
     "full": "Advances in Financial Technologies",
     "category": "Web/交叉应用",
@@ -322,28 +300,6 @@ const CONFERENCES = [
     "venue_year": 2026,
     "venue_date": "October 21-24, 2026",
     "venue_end": "2026-10-24",
-    "year": 2026
-  },
-  {
-    "name": "APWeb-WAIM 2027",
-    "full": "APWeb-WAIM joint international conference on Web and Big Data",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": null,
-    "deadline": "2027-05-14T23:59:59-12:00",
-    "conf_date": "TBD",
-    "place": "Danang, Vietnam",
-    "link": "https://conferences.sigappfr.org/apweb2026/",
-    "prev_deadline": "2026-05-14T23:59:59-12:00",
-    "prev_year": 2026,
-    "venue": "Danang, Vietnam",
-    "venue_year": 2026,
-    "venue_date": "September 7-9, 2026",
-    "venue_end": "2026-09-09",
     "year": 2026
   },
   {
@@ -503,50 +459,6 @@ const CONFERENCES = [
     "lon": -0.13
   },
   {
-    "name": "CICAI 2027",
-    "full": "CAAI International Conference on Artificial Intelligence",
-    "category": "机器学习/ML",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "ML"
-    ],
-    "abstract": null,
-    "deadline": "2027-06-08T23:59:59+08:00",
-    "conf_date": "TBD",
-    "place": "Haining, Zhejiang, China",
-    "link": "https://cicai.caai.cn/index.html",
-    "prev_deadline": "2026-06-08T23:59:59+08:00",
-    "prev_year": 2026,
-    "venue": "Haining, Zhejiang, China",
-    "venue_year": 2026,
-    "venue_date": "October 17-19, 2026",
-    "venue_end": "2026-10-19",
-    "year": 2026
-  },
-  {
-    "name": "CIDR 2027",
-    "full": "International Conference on Innovative Data Systems Research",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": false,
-    "tags": [
-      "DM"
-    ],
-    "abstract": null,
-    "deadline": "2026-08-04T23:59:59-07:00",
-    "conf_date": "January 24-27, 2027",
-    "place": "Amsterdam, The Netherlands",
-    "link": "https://www.cidrdb.org/cidr2027/",
-    "venue": "Amsterdam, The Netherlands",
-    "venue_year": 2027,
-    "venue_date": "January 24-27, 2027",
-    "venue_end": "2027-01-27",
-    "year": 2027,
-    "lat": 52.37,
-    "lon": 4.9
-  },
-  {
     "name": "CIKM 2027",
     "full": "ACM International Conference on Information and Knowledge Management",
     "category": "数据挖掘/检索",
@@ -663,30 +575,6 @@ const CONFERENCES = [
     "venue_date": "March 23-27, 2026",
     "venue_end": "2026-03-27",
     "year": 2026
-  },
-  {
-    "name": "CVM 2027",
-    "full": "The international conference on Computational Visual Media",
-    "category": "图形/语音/多媒体",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "CG"
-    ],
-    "abstract": "2026-10-10T23:59:59+00:00",
-    "deadline": "2026-10-13T23:59:59+00:00",
-    "conf_date": "TBD",
-    "place": "Seoul, Korea",
-    "link": "http://iccvm.org/2026/",
-    "prev_deadline": "2025-10-13T23:59:59+00:00",
-    "prev_year": 2026,
-    "venue": "Seoul, Korea",
-    "venue_year": 2026,
-    "venue_date": "April 10-12, 2026",
-    "venue_end": "2026-04-12",
-    "year": 2026,
-    "lat": 37.57,
-    "lon": 126.98
   },
   {
     "name": "CVPR 2027",
@@ -831,30 +719,6 @@ const CONFERENCES = [
     "lon": 114.17
   },
   {
-    "name": "DASFAA 2027",
-    "full": "Database Systems for Advanced Applications",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2026-10-20T23:59:59-12:00",
-    "deadline": "2026-10-27T23:59:59-12:00",
-    "conf_date": "TBD",
-    "place": "Jeju Island, South Korea",
-    "link": "https://dasfaa2026.github.io/",
-    "prev_deadline": "2025-10-27T23:59:59-12:00",
-    "prev_year": 2026,
-    "venue": "Jeju Island, South Korea",
-    "venue_year": 2026,
-    "venue_date": "April 21-24, 2026",
-    "venue_end": "2026-04-24",
-    "year": 2026,
-    "lat": 33.5,
-    "lon": 126.53
-  },
-  {
     "name": "DCC 2027",
     "full": "Data Compression Conference",
     "category": "图形/语音/多媒体",
@@ -987,26 +851,6 @@ const CONFERENCES = [
     "venue_date": "September 7-11, 2026",
     "venue_end": "2026-09-11",
     "year": 2026
-  },
-  {
-    "name": "EDBT 2027",
-    "full": "International Conference on Extending Database Technology",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": false,
-    "tags": [
-      "DM"
-    ],
-    "abstract": null,
-    "deadline": "2026-06-10T23:59:59-12:00",
-    "conf_date": "April 6-9, 2027",
-    "place": "Lille, France",
-    "link": "https://edbticdt2027.github.io/",
-    "venue": "Lille, France",
-    "venue_year": 2027,
-    "venue_date": "April 6-9, 2027",
-    "venue_end": "2027-04-09",
-    "year": 2027
   },
   {
     "name": "EGSR 2027",
@@ -1395,28 +1239,6 @@ const CONFERENCES = [
     "lon": 16.37
   },
   {
-    "name": "ICDE 2027",
-    "full": "IEEE International Conference on Data Engineering",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": false,
-    "tags": [
-      "DM"
-    ],
-    "abstract": null,
-    "deadline": "2026-06-11T17:00:00-07:00",
-    "conf_date": "May 17-21, 2027",
-    "place": "Copenhagen, Denmark",
-    "link": "https://icde2027.github.io/",
-    "venue": "Copenhagen, Denmark",
-    "venue_year": 2027,
-    "venue_date": "May 17-21, 2027",
-    "venue_end": "2027-05-21",
-    "year": 2027,
-    "lat": 55.68,
-    "lon": 12.57
-  },
-  {
     "name": "ICDM 2027",
     "full": "IEEE International Conference on Data Mining",
     "category": "数据挖掘/检索",
@@ -1437,50 +1259,6 @@ const CONFERENCES = [
     "venue_date": "November 12-15, 2026",
     "venue_end": "2026-11-15",
     "year": 2026
-  },
-  {
-    "name": "ICDT 2027",
-    "full": "International Conference on Database Theory",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": false,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2026-09-03T23:59:59-12:00",
-    "deadline": "2026-09-10T23:59:59-12:00",
-    "conf_date": "April 6-9, 2027",
-    "place": "Lille, France",
-    "link": "https://edbticdt2027.github.io/",
-    "venue": "Lille, France",
-    "venue_year": 2027,
-    "venue_date": "April 6-9, 2027",
-    "venue_end": "2027-04-09",
-    "year": 2027
-  },
-  {
-    "name": "ICIC 2027",
-    "full": "International Conference on Intelligent Computing",
-    "category": "Web/交叉应用",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "APP"
-    ],
-    "abstract": null,
-    "deadline": "2027-04-04T11:59:59+08:00",
-    "conf_date": "TBD",
-    "place": "Toronto, Canada",
-    "link": "http://www.ic-icc.cn/2026/",
-    "prev_deadline": "2026-04-04T11:59:59+08:00",
-    "prev_year": 2026,
-    "venue": "Toronto, Canada",
-    "venue_year": 2026,
-    "venue_date": "July 22-26, 2026",
-    "venue_end": "2026-07-26",
-    "year": 2026,
-    "lat": 43.65,
-    "lon": -79.38
   },
   {
     "name": "ICIP 2027",
@@ -1689,28 +1467,6 @@ const CONFERENCES = [
     "venue_date": "November 02-04, 2026",
     "venue_end": "2026-11-04",
     "year": 2026
-  },
-  {
-    "name": "ICVRV 2026",
-    "full": "International Conference on Virtual Reality and Visualization",
-    "category": "图形/语音/多媒体",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "CG"
-    ],
-    "abstract": "2026-08-15T23:59:59-12:00",
-    "deadline": "2026-08-22T23:59:59-12:00",
-    "conf_date": "TBD",
-    "place": "Bogota, Colombia",
-    "link": "https://icvrv2025.aconf.org/",
-    "prev_deadline": "2025-08-22T23:59:59-12:00",
-    "prev_year": 2025,
-    "venue": "Bogota, Colombia",
-    "venue_year": 2025,
-    "venue_date": "December 19-21, 2025",
-    "venue_end": "2025-12-21",
-    "year": 2025
   },
   {
     "name": "IEEE CEC 2027",
@@ -2013,30 +1769,6 @@ const CONFERENCES = [
     "lon": -9.14
   },
   {
-    "name": "KSEM 2027",
-    "full": "International Conference on Knowledge Science, Engineering and Management",
-    "category": "机器学习/ML",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "ML"
-    ],
-    "abstract": null,
-    "deadline": "2027-01-15T23:59:59+00:00",
-    "conf_date": "TBD",
-    "place": "Beijing, China",
-    "link": "https://ksem2026.rosc.org.cn/",
-    "prev_deadline": "2026-01-15T23:59:59+00:00",
-    "prev_year": 2026,
-    "venue": "Beijing, China",
-    "venue_year": 2026,
-    "venue_date": "July 17-19, 2026",
-    "venue_end": "2026-07-19",
-    "year": 2026,
-    "lat": 39.9,
-    "lon": 116.41
-  },
-  {
     "name": "LOG 2026",
     "full": "Learning on Graphs Conference",
     "category": "机器学习/ML",
@@ -2173,48 +1905,6 @@ const CONFERENCES = [
     "year": 2025
   },
   {
-    "name": "NCMMSC 2026",
-    "full": "National Conference on Man-Machine Speech Communication",
-    "category": "图形/语音/多媒体",
-    "highlight": false,
-    "est": false,
-    "tags": [
-      "CG"
-    ],
-    "abstract": null,
-    "deadline": "2026-07-05T23:59:59+08:00",
-    "conf_date": "Nov 5-8, 2026",
-    "place": "Hengqin, China",
-    "link": "https://www.ncmmsc.org.cn/",
-    "venue": "Hengqin, China",
-    "venue_year": 2026,
-    "venue_date": "Nov 5-8, 2026",
-    "venue_end": "2026-11-08",
-    "year": 2026
-  },
-  {
-    "name": "NLPCC 2026",
-    "full": "CCF International Conference on Natural Language Processing and Chinese Computing",
-    "category": "NLP",
-    "highlight": false,
-    "est": false,
-    "tags": [
-      "NLP"
-    ],
-    "abstract": null,
-    "deadline": "2026-06-20T23:59:59+08:00",
-    "conf_date": "November 3-5, 2026",
-    "place": "Macau, China",
-    "link": "http://tcci.ccf.org.cn/conference/2026/",
-    "venue": "Macau, China",
-    "venue_year": 2026,
-    "venue_date": "November 3-5, 2026",
-    "venue_end": "2026-11-05",
-    "year": 2026,
-    "lat": 22.2,
-    "lon": 113.54
-  },
-  {
     "name": "NeurIPS 2027",
     "full": "Conference on Neural Information Processing Systems",
     "category": "AI 三大会",
@@ -2287,30 +1977,6 @@ const CONFERENCES = [
     "lon": 103.82
   },
   {
-    "name": "PODS 2027",
-    "full": "ACM Symposium on Principles of Database Systems",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2026-12-02T17:00:00-07:00",
-    "deadline": "2026-12-09T17:00:00-07:00",
-    "conf_date": "TBD",
-    "place": "Berlin, Germany",
-    "link": "https://2025.sigmod.org/",
-    "prev_deadline": "2024-12-09T17:00:00-07:00",
-    "prev_year": 2025,
-    "venue": "Berlin, Germany",
-    "venue_year": 2025,
-    "venue_date": "June 22-27, 2025",
-    "venue_end": "2025-06-27",
-    "year": 2025,
-    "lat": 52.52,
-    "lon": 13.4
-  },
-  {
     "name": "PPSN 2027",
     "full": "International Conference on Parallel Problem Solving From Nature",
     "category": "机器学习/ML",
@@ -2330,28 +1996,6 @@ const CONFERENCES = [
     "venue_year": 2026,
     "venue_date": "August 29-September 2, 2026",
     "venue_end": "2026-09-02",
-    "year": 2026
-  },
-  {
-    "name": "PRCV 2027",
-    "full": "Chinese Conference on Pattern Recognition and Computer Vision",
-    "category": "图形/语音/多媒体",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "CG"
-    ],
-    "abstract": null,
-    "deadline": "2027-05-30T23:59:59-12:00",
-    "conf_date": "TBD",
-    "place": "Harbin, China",
-    "link": "https://www.prcv.cn/web/#/home",
-    "prev_deadline": "2026-05-30T23:59:59-12:00",
-    "prev_year": 2026,
-    "venue": "Harbin, China",
-    "venue_year": 2026,
-    "venue_date": "Aug 22-25, 2026",
-    "venue_end": "2026-08-25",
     "year": 2026
   },
   {
@@ -2655,26 +2299,6 @@ const CONFERENCES = [
     "lon": 126.53
   },
   {
-    "name": "SIGMOD 2027",
-    "full": "ACM Conference on Management of Data",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": false,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2026-07-10T23:59:00-12:00",
-    "deadline": "2026-07-17T23:59:00-12:00",
-    "conf_date": "June 13-19, 2027",
-    "place": "Huntington Beach, CA, USA",
-    "link": "https://2027.sigmod.org/",
-    "venue": "Huntington Beach, CA, USA",
-    "venue_year": 2027,
-    "venue_date": "June 13-19, 2027",
-    "venue_end": "2027-06-19",
-    "year": 2027
-  },
-  {
     "name": "SIGSPATIAL 2027",
     "full": "ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems",
     "category": "Web/交叉应用",
@@ -2833,28 +2457,6 @@ const CONFERENCES = [
     "year": 2025
   },
   {
-    "name": "VLDB 2027",
-    "full": "International Conference on Very Large Data Bases",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": false,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2026-06-25T17:00:00-08:00",
-    "deadline": "2026-07-01T17:00:00-08:00",
-    "conf_date": "August 23 - August 27, 2027",
-    "place": "Athens, Greece",
-    "link": "https://www.vldb.org/2027/",
-    "venue": "Athens, Greece",
-    "venue_year": 2027,
-    "venue_date": "August 23 - August 27, 2027",
-    "venue_end": "2027-08-27",
-    "year": 2027,
-    "lat": 37.98,
-    "lon": 23.73
-  },
-  {
     "name": "WACV 2027",
     "full": "IEEE/CVF Winter Conference on Applications of Computer Vision",
     "category": "其他 CV/视觉",
@@ -2895,28 +2497,6 @@ const CONFERENCES = [
     "year": 2026,
     "lat": 22.32,
     "lon": 114.17
-  },
-  {
-    "name": "WISA 2027",
-    "full": "Web Information Systems and Applications",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2027-04-21T23:59:59+08:00",
-    "deadline": "2027-04-28T23:59:59+08:00",
-    "conf_date": "TBD",
-    "place": "Kunming, China",
-    "link": "https://conf.ccf.org.cn/WISA2026",
-    "prev_deadline": "2026-04-28T23:59:59+08:00",
-    "prev_year": 2026,
-    "venue": "Kunming, China",
-    "venue_year": 2026,
-    "venue_date": "August 07-09, 2026",
-    "venue_end": "2026-08-09",
-    "year": 2026
   },
   {
     "name": "WSDM 2027",
