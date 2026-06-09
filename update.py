@@ -92,6 +92,17 @@ ARR_ENTRY = {
     "link": "https://aclrollingreview.org/dates",
 }
 
+# 手动地点覆盖：官方已公布但数据源尚未收录的届
+# key = 会议显示名(name)；可给 place / venue_year / venue_date / lat / lon
+VENUE_OVERRIDE = {
+    "ICLR 2027": {
+        "place": "West Coast, North America",
+        "venue_year": 2027,
+        "venue_date": "TBD",
+        "lat": 37.77, "lon": -122.42,   # 北美西海岸（旧金山一带代表点）
+    },
+}
+
 
 # 命名时区 → UTC 偏移小时
 _TZ_NAMED = {
@@ -298,6 +309,14 @@ def build():
 
     out.append(ARR_ENTRY)
     print(f"  纳入 {len(out)} 个会议（跳过 {skipped} 个无可用截稿日）")
+
+    # 手动地点覆盖（官方已公布、数据源未收录）
+    for item in out:
+        ov = VENUE_OVERRIDE.get(item.get("name"))
+        if ov:
+            item.update(ov)
+            item["venue"] = ov.get("place", item.get("venue"))
+            item["venue_end"] = parse_conf_end(item.get("venue_date"))  # 重算，避免沿用旧届
 
     # 地理编码 + 提取年份，供地图使用
     for item in out:

@@ -1,5 +1,5 @@
 // 本文件由 update.py 自动生成，请勿手改（ARR 除外）。
-// 生成时间: 2026-06-09T15:06:37.070091+00:00
+// 生成时间: 2026-06-09T15:23:20.250400+00:00
 
 const CATEGORIES = ["AI 三大会", "ARR (ACL Rolling Review)", "NLP", "综合 AI", "多智能体", "CV 三大会", "其他 CV/视觉", "Robotics", "机器学习/ML", "数据挖掘/检索", "图形/语音/多媒体", "Web/交叉应用"];
 
@@ -1516,17 +1516,17 @@ const CONFERENCES = [
     "abstract": "2026-09-19T23:59:59-12:00",
     "deadline": "2026-09-24T23:59:59-12:00",
     "conf_date": "TBD",
-    "place": "Brazil",
+    "place": "West Coast, North America",
     "link": "https://iclr.cc/Conferences/2026",
     "prev_deadline": "2025-09-24T23:59:59-12:00",
     "prev_year": 2026,
-    "venue": "Brazil",
-    "venue_year": 2026,
-    "venue_date": "May 01-05, 2026",
-    "venue_end": "2026-05-05",
-    "year": 2026,
-    "lat": -22.91,
-    "lon": -43.17
+    "venue": "West Coast, North America",
+    "venue_year": 2027,
+    "venue_date": "TBD",
+    "venue_end": null,
+    "lat": 37.77,
+    "lon": -122.42,
+    "year": 2027
   },
   {
     "name": "ICME 2027",
