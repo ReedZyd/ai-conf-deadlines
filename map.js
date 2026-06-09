@@ -4,9 +4,9 @@
 
 const I18N = {
   zh: { title: "会议地点地图", back: "列表", switchTo: "EN",
-        deadline: "截稿", edition: "届", nextDl: "下一届截稿(估)" },
+        deadline: "截稿", dates: "会期", edition: "届", nextDl: "下一届截稿(估)" },
   en: { title: "Conference Location Map", back: "List", switchTo: "中",
-        deadline: "Deadline", edition: "edition", nextDl: "Next deadline (est.)" },
+        deadline: "Deadline", dates: "Dates", edition: "edition", nextDl: "Next deadline (est.)" },
 };
 let lang = localStorage.getItem("lang") === "en" ? "en" : "zh";
 const t = () => I18N[lang];
@@ -47,10 +47,19 @@ function draw() {
     const conf = c.name.split(" ")[0];
     const title = c.venue_year ? `${conf} ${c.venue_year}` : c.name;
     const dlLabel = c.est ? t().nextDl : t().deadline;
+    const dateLine = c.venue_date ? `${t().dates}: ${c.venue_date}<br>` : "";
     m.bindPopup(
       `<b>${title}</b><br>` +
       `📍 ${c.venue || c.place || ""}<br>` +
+      dateLine +
       `${dlLabel}: ${fmt(c.deadline)}`
+    );
+    // 常驻标签：不点击也能看到「会议 · 时间 · 地点」
+    const labelDate = c.venue_date ? `<br><span class="lbl-date">${c.venue_date}</span>` : "";
+    const city = (c.venue || c.place || "").split(",")[0];
+    m.bindTooltip(
+      `<b>${title}</b>${labelDate}<br><span class="lbl-city">📍 ${city}</span>`,
+      { permanent: true, direction: "top", offset: [0, -6], className: "conf-label" }
     );
     markers.push(m);
   }

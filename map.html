@@ -30,6 +30,23 @@
     .leaflet-popup-content { font-size: 13px; line-height: 1.5; }
     .leaflet-popup-content b { font-size: 14px; }
     .leaflet-popup-content .est { color: #ff9800; font-style: italic; }
+    /* 常驻标签 */
+    .conf-label.leaflet-tooltip {
+      background: rgba(20, 23, 33, 0.92);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 11px;
+      line-height: 1.35;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      white-space: nowrap;
+    }
+    .conf-label.leaflet-tooltip b { font-size: 12px; }
+    .conf-label .lbl-date { color: var(--soon); }
+    .conf-label .lbl-city { color: var(--muted); }
+    .conf-label.leaflet-tooltip-top::before { border-top-color: var(--border); }
   </style>
 </head>
 <body>
