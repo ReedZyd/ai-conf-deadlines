@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 会议 Deadline 追踪</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>AI 会议 Deadline 追踪</h1>
+    <p class="sub">所有时间已换算为你的本地时区 · 截稿默认 AoE (UTC−12)</p>
+    <div class="controls">
+      <input id="search" type="search" placeholder="搜索会议…" />
+      <div id="tagbar" class="tagbar"></div>
+      <label class="toggle">
+        <input id="hidePast" type="checkbox" checked /> 隐藏已截稿
+      </label>
+      <label class="toggle">
+        <input id="onlyStar" type="checkbox" /> 只看 ⭐
+      </label>
+    </div>
+  </header>
+
+  <main id="list"></main>
+
+  <footer>
+    <p>编辑 <code>data.js</code> 即可添加会议 · 纯静态，可托管于 GitHub Pages</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

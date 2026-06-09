@@ -1,0 +1,53 @@
+name: Update deadlines & deploy
+
+on:
+  schedule:
+    - cron: "0 1 * * *"      # 每天 UTC 01:00（北京时间 09:00）自动运行
+  workflow_dispatch:          # 也可在 Actions 页手动触发
+  push:
+    branches: [main]          # 推代码时也部署一次
+
+permissions:
+  contents: write             # 允许提交回 data.js
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Fetch latest deadlines
+        run: python update.py
+
+      - name: Commit refreshed data.js
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet data.js; then
+            git add data.js
+            git commit -m "chore: auto-update deadlines [skip ci]"
+            git push
+          else
+            echo "data.js 无变化"
+          fi
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to Pages
+        uses: actions/deploy-pages@v4
