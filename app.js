@@ -29,6 +29,8 @@ const I18N = {
     estTip: "官方未公布，按上一届日期估计",
     other: "其他",
     mapLink: "🗺 地图",
+    sortByTime: "⏱ 按倒计时",
+    sortByCat: "🗂 按分类",
     switchTo: "EN",
     locale: "zh-CN",
   },
@@ -49,6 +51,8 @@ const I18N = {
     estTip: "Official CFP not out; estimated from last edition",
     other: "Other",
     mapLink: "🗺 Map",
+    sortByTime: "⏱ By countdown",
+    sortByCat: "🗂 By category",
     switchTo: "中",
     locale: "en-US",
   },
@@ -183,13 +187,23 @@ function cardHTML(c) {
   return card;
 }
 
+let sortMode = localStorage.getItem("sortMode") === "category" ? "category" : "countdown";
+
 function render() {
-  const items = visibleConferences();
+  const items = visibleConferences();   // 已按 deadline 升序
   if (items.length === 0) {
     listEl.innerHTML = `<div class="empty">${t().empty}</div>`;
     return;
   }
   listEl.innerHTML = "";
+
+  // 按倒计时：全部拉平，最近截稿在最前
+  if (sortMode === "countdown") {
+    for (const c of items) listEl.appendChild(cardHTML(c));
+    return;
+  }
+
+  // 按分类分组
   const order = typeof CATEGORIES !== "undefined" ? CATEGORIES : [];
   const cats = [...new Set(items.map((c) => c.category || t().other))].sort(
     (a, b) => (order.indexOf(a) + 1 || 99) - (order.indexOf(b) + 1 || 99)
@@ -226,8 +240,17 @@ function applyStaticI18n() {
   document.getElementById("hidePastLabel").textContent = t().hidePast;
   document.getElementById("onlyStarLabel").textContent = t().onlyStar + " ";
   document.getElementById("mapLink").textContent = t().mapLink;
+  sortBtn.textContent = sortMode === "countdown" ? t().sortByTime : t().sortByCat;
   langBtn.textContent = t().switchTo;
 }
+
+const sortBtn = document.getElementById("sortBtn");
+sortBtn.addEventListener("click", () => {
+  sortMode = sortMode === "countdown" ? "category" : "countdown";
+  localStorage.setItem("sortMode", sortMode);
+  applyStaticI18n();
+  render();
+});
 
 langBtn.addEventListener("click", () => {
   lang = lang === "zh" ? "en" : "zh";
