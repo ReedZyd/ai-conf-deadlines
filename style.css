@@ -25,7 +25,24 @@ header {
   max-width: 860px;
   margin: 0 auto;
   padding: 40px 0 24px;
+  position: relative;
 }
+
+.lang-btn {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s;
+}
+.lang-btn:hover { border-color: var(--accent); color: var(--accent); }
 
 h1 { font-size: 28px; font-weight: 700; }
 .sub { color: var(--muted); font-size: 14px; margin-top: 6px; }

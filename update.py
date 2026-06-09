@@ -50,11 +50,12 @@ TARGETS = [
 #   May 2026 轮 5/25(已过) → Aug 2026 轮 8/3 → Oct 2026 轮 10/12
 ARR_ENTRY = {
     "name": "ARR — August 2026",
-    "full": "ACL Rolling Review · 8 月轮（提交截稿 Aug 3；承诺日 Oct 11，对应 EACL 2027）",
+    "full": "ACL Rolling Review · 8 月轮（提交截稿 Aug 3；承诺日 Oct 11）",
     "category": "ARR (ACL Rolling Review)",
     "est": False, "highlight": False, "tags": ["NLP"],
     "deadline": "2026-08-03T23:59:00-12:00",
-    "conf_date": "Commit: Oct 11, 2026", "place": "线上提交",
+    "conf_date": "最近会议：EACL 2027（承诺日 Oct 11, 2026）",
+    "place": "EACL 2027 · 线上提交至 ARR",
     "link": "https://aclrollingreview.org/dates",
 }
 
@@ -152,7 +153,9 @@ def pick_edition(conf, now):
     if e["year"]:
         e["year"] = e["year"] + years
     e["conf_date"] = "TBD"
-    e["place"] = "TBD"
+    # 地点保留上一届的（标注「往届」），供参考；官方公布后会自动替换为真实地点
+    if e["place"] and e["place"] != "TBD":
+        e["place"] = f"{e['place']}（往届）"
     return e
 
 

@@ -1,5 +1,6 @@
 // ============================================================
-//  渲染 + 实时倒计时 + 搜索/标签/隐藏已截稿
+//  渲染 + 实时倒计时 + 搜索/筛选 + 中英文切换
+//  · 估算(est)项倒计时用「月/天/时」；确定项用「天/时/分」
 // ============================================================
 
 const listEl = document.getElementById("list");
@@ -7,20 +8,73 @@ const searchEl = document.getElementById("search");
 const tagbarEl = document.getElementById("tagbar");
 const hidePastEl = document.getElementById("hidePast");
 const onlyStarEl = document.getElementById("onlyStar");
+const langBtn = document.getElementById("langBtn");
+
+// ---------- 国际化 ----------
+const I18N = {
+  zh: {
+    title: "AI 会议 Deadline 追踪",
+    sub: "所有时间已换算为你的本地时区 · 截稿默认 AoE (UTC−12)",
+    search: "搜索会议…",
+    hidePast: "隐藏已截稿",
+    onlyStar: "只看 ⭐",
+    deadline: "截稿",
+    abstract: "摘要",
+    confDate: "会期",
+    place: "地点",
+    empty: "没有匹配的会议",
+    past: "已截稿",
+    est: "估",
+    estTip: "官方未公布，按上一届日期估计",
+    other: "其他",
+    switchTo: "EN",
+    locale: "zh-CN",
+  },
+  en: {
+    title: "AI Conference Deadline Tracker",
+    sub: "All times in your local timezone · Deadlines default to AoE (UTC−12)",
+    search: "Search conferences…",
+    hidePast: "Hide past",
+    onlyStar: "Starred only",
+    deadline: "Deadline",
+    abstract: "Abstract",
+    confDate: "Dates",
+    place: "Place",
+    empty: "No matching conferences",
+    past: "Past",
+    est: "EST",
+    estTip: "Official CFP not out; estimated from last edition",
+    other: "Other",
+    switchTo: "中",
+    locale: "en-US",
+  },
+};
+
+// 分类中英文对照
+const CAT_I18N = {
+  "AI 三大会": "Top-3 AI",
+  "ARR (ACL Rolling Review)": "ARR (ACL Rolling Review)",
+  "综合 AI": "General AI",
+  "多智能体": "Multi-Agent",
+  "CV 三大会": "Top-3 CV",
+  "Robotics": "Robotics",
+};
+
+let lang = localStorage.getItem("lang") === "en" ? "en" : "zh";
+const t = () => I18N[lang];
+const catLabel = (cat) => (lang === "en" ? CAT_I18N[cat] || cat : cat);
 
 let activeTag = null;
-
-// 收集所有标签
 const allTags = [...new Set(CONFERENCES.flatMap((c) => c.tags || []))].sort();
 
 function buildTagbar() {
   tagbarEl.innerHTML = "";
-  for (const t of allTags) {
+  for (const tag of allTags) {
     const b = document.createElement("button");
-    b.className = "tag-btn" + (activeTag === t ? " active" : "");
-    b.textContent = t;
+    b.className = "tag-btn" + (activeTag === tag ? " active" : "");
+    b.textContent = tag;
     b.onclick = () => {
-      activeTag = activeTag === t ? null : t;
+      activeTag = activeTag === tag ? null : tag;
       buildTagbar();
       render();
     };
@@ -29,8 +83,7 @@ function buildTagbar() {
 }
 
 function fmtLocal(iso) {
-  const d = new Date(iso);
-  return d.toLocaleString(undefined, {
+  return new Date(iso).toLocaleString(t().locale, {
     year: "numeric", month: "short", day: "numeric",
     hour: "2-digit", minute: "2-digit",
   });
@@ -44,15 +97,28 @@ function urgency(msLeft) {
   return "safe";
 }
 
-function countdownText(msLeft) {
-  if (msLeft < 0) return "已截稿";
+// est=true → 月/天/时；否则 天/时/分（临近 1 天内用 时/分/秒）
+function countdownText(msLeft, est) {
+  if (msLeft < 0) return t().past;
   const s = Math.floor(msLeft / 1000);
-  const d = Math.floor(s / 86400);
+  const totalDays = Math.floor(s / 86400);
   const h = Math.floor((s % 86400) / 3600);
   const m = Math.floor((s % 3600) / 60);
   const sec = s % 60;
-  if (d > 0) return `${d}天 ${h}时 ${m}分`;
-  return `${h}时 ${m}分 ${sec}秒`;
+
+  if (est) {
+    const months = Math.floor(totalDays / 30);
+    const days = totalDays % 30;
+    if (lang === "en") {
+      return months > 0 ? `${months}mo ${days}d ${h}h` : `${days}d ${h}h`;
+    }
+    return months > 0 ? `${months}个月 ${days}天 ${h}时` : `${days}天 ${h}时`;
+  }
+
+  if (lang === "en") {
+    return totalDays > 0 ? `${totalDays}d ${h}h ${m}m` : `${h}h ${m}m ${sec}s`;
+  }
+  return totalDays > 0 ? `${totalDays}天 ${h}时 ${m}分` : `${h}时 ${m}分 ${sec}秒`;
 }
 
 function visibleConferences() {
@@ -72,9 +138,10 @@ function cardHTML(c) {
   const card = document.createElement("div");
   card.className = `card ${u}` + (c.highlight ? " star" : "");
   card.dataset.deadline = c.deadline;
+  card.dataset.est = c.est ? "1" : "";
 
   const star = c.highlight ? '<span class="star-badge" title="Highlight">⭐</span> ' : "";
-  const estBadge = c.est ? '<span class="est-badge" title="官方未公布，按上一届日期估计">估</span>' : "";
+  const estBadge = c.est ? `<span class="est-badge" title="${t().estTip}">${t().est}</span>` : "";
   const title = c.link
     ? `<a href="${c.link}" target="_blank" rel="noopener">${c.name}</a>`
     : c.name;
@@ -85,15 +152,15 @@ function cardHTML(c) {
         <h2>${star}${title} ${estBadge}</h2>
         ${c.full ? `<div class="full">${c.full}</div>` : ""}
       </div>
-      <div class="countdown ${u}">${countdownText(msLeft)}</div>
+      <div class="countdown ${u}">${countdownText(msLeft, c.est)}</div>
     </div>
     <div class="meta">
-      <span class="deadline-local">截稿：${fmtLocal(c.deadline)}</span>
-      ${c.abstract ? `<span>摘要：${fmtLocal(c.abstract)}</span>` : ""}
-      ${c.conf_date ? `<span>会期：${c.conf_date}</span>` : ""}
+      <span class="deadline-local">${t().deadline}：${fmtLocal(c.deadline)}</span>
+      ${c.abstract ? `<span>${t().abstract}：${fmtLocal(c.abstract)}</span>` : ""}
+      ${c.conf_date ? `<span>${t().confDate}：${c.conf_date}</span>` : ""}
       ${c.place ? `<span>📍 ${c.place}</span>` : ""}
     </div>
-    ${c.tags ? `<div class="tags">${c.tags.map((t) => `<span>${t}</span>`).join("")}</div>` : ""}
+    ${c.tags ? `<div class="tags">${c.tags.map((x) => `<span>${x}</span>`).join("")}</div>` : ""}
   `;
   return card;
 }
@@ -101,43 +168,60 @@ function cardHTML(c) {
 function render() {
   const items = visibleConferences();
   if (items.length === 0) {
-    listEl.innerHTML = '<div class="empty">没有匹配的会议</div>';
+    listEl.innerHTML = `<div class="empty">${t().empty}</div>`;
     return;
   }
   listEl.innerHTML = "";
-
-  // 按分类分组；CATEGORIES 给出顺序，其余分类排在后面
   const order = typeof CATEGORIES !== "undefined" ? CATEGORIES : [];
-  const cats = [...new Set(items.map((c) => c.category || "其他"))].sort(
+  const cats = [...new Set(items.map((c) => c.category || t().other))].sort(
     (a, b) => (order.indexOf(a) + 1 || 99) - (order.indexOf(b) + 1 || 99)
   );
-
   for (const cat of cats) {
-    const group = items.filter((c) => (c.category || "其他") === cat);
+    const group = items.filter((c) => (c.category || t().other) === cat);
     const h = document.createElement("h3");
     h.className = "cat-head";
-    h.textContent = `${cat} (${group.length})`;
+    h.textContent = `${catLabel(cat)} (${group.length})`;
     listEl.appendChild(h);
     for (const c of group) listEl.appendChild(cardHTML(c));
   }
 }
 
-// 每秒只更新倒计时文字与紧急度，避免整页重建
+// 每秒只更新倒计时文字与紧急度
 function tick() {
   document.querySelectorAll(".card").forEach((card) => {
     const msLeft = new Date(card.dataset.deadline).getTime() - Date.now();
     const u = urgency(msLeft);
     const cd = card.querySelector(".countdown");
-    cd.textContent = countdownText(msLeft);
+    cd.textContent = countdownText(msLeft, card.dataset.est === "1");
     cd.className = `countdown ${u}`;
     card.className = `card ${u}` + (card.classList.contains("star") ? " star" : "");
   });
 }
 
+// 应用静态文案（标题、副标题、占位符、开关、按钮）
+function applyStaticI18n() {
+  document.documentElement.lang = lang;
+  document.title = t().title;
+  document.getElementById("pageTitle").textContent = t().title;
+  document.getElementById("pageSub").textContent = t().sub;
+  searchEl.placeholder = t().search;
+  document.getElementById("hidePastLabel").textContent = t().hidePast;
+  document.getElementById("onlyStarLabel").textContent = t().onlyStar + " ";
+  langBtn.textContent = t().switchTo;
+}
+
+langBtn.addEventListener("click", () => {
+  lang = lang === "zh" ? "en" : "zh";
+  localStorage.setItem("lang", lang);
+  applyStaticI18n();
+  render();
+});
+
 searchEl.addEventListener("input", render);
 hidePastEl.addEventListener("change", render);
 onlyStarEl.addEventListener("change", render);
 
+applyStaticI18n();
 buildTagbar();
 render();
 setInterval(tick, 1000);

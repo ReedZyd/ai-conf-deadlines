@@ -1,5 +1,5 @@
 // 本文件由 update.py 自动生成，请勿手改（ARR 除外）。
-// 生成时间: 2026-06-09T13:47:02.534834+00:00
+// 生成时间: 2026-06-09T13:50:37.749144+00:00
 
 const CATEGORIES = ["AI 三大会", "ARR (ACL Rolling Review)", "综合 AI", "多智能体", "CV 三大会", "Robotics"];
 
@@ -16,7 +16,7 @@ const CONFERENCES = [
     "abstract": "2027-05-05T11:59:00+00:00",
     "deadline": "2027-05-07T11:59:00+00:00",
     "conf_date": "TBD",
-    "place": "TBD",
+    "place": "Sydney, Australia（往届）",
     "link": "https://neurips.cc/Conferences/2026"
   },
   {
@@ -31,7 +31,7 @@ const CONFERENCES = [
     "abstract": "2027-01-24T11:59:59+00:00",
     "deadline": "2027-01-29T11:59:59+00:00",
     "conf_date": "TBD",
-    "place": "TBD",
+    "place": "Seoul, Korea（往届）",
     "link": "https://icml.cc/Conferences/2026"
   },
   {
@@ -46,7 +46,7 @@ const CONFERENCES = [
     "abstract": "2026-09-19T23:59:59-12:00",
     "deadline": "2026-09-24T23:59:59-12:00",
     "conf_date": "TBD",
-    "place": "TBD",
+    "place": "Brazil（往届）",
     "link": "https://iclr.cc/Conferences/2026"
   },
   {
@@ -76,7 +76,7 @@ const CONFERENCES = [
     "abstract": "2027-01-12T23:59:59-12:00",
     "deadline": "2027-01-19T23:59:59-12:00",
     "conf_date": "TBD",
-    "place": "TBD",
+    "place": "Bremen, Germany（往届）",
     "link": "https://2026.ijcai.org/"
   },
   {
@@ -91,7 +91,7 @@ const CONFERENCES = [
     "abstract": "2026-10-01T23:59:59-12:00",
     "deadline": "2026-10-08T23:59:59-12:00",
     "conf_date": "TBD",
-    "place": "TBD",
+    "place": "Paphos, Cyprus（往届）",
     "link": "https://cyprusconferences.org/aamas2026"
   },
   {
@@ -106,7 +106,7 @@ const CONFERENCES = [
     "abstract": "2026-11-06T23:59:00-12:00",
     "deadline": "2026-11-13T23:59:00-12:00",
     "conf_date": "TBD",
-    "place": "TBD",
+    "place": "Denver, Colorado, United States（往届）",
     "link": "https://cvpr.thecvf.com/Conferences/2026"
   },
   {
@@ -121,7 +121,7 @@ const CONFERENCES = [
     "abstract": "2027-03-04T09:59:59+00:00",
     "deadline": "2027-03-08T09:59:59+00:00",
     "conf_date": "TBD",
-    "place": "TBD",
+    "place": "Honolulu, Hawaii（往届）",
     "link": "https://iccv.thecvf.com/Conferences/2025"
   },
   {
@@ -136,7 +136,7 @@ const CONFERENCES = [
     "abstract": "2027-02-26T14:00:00-08:00",
     "deadline": "2027-03-05T14:00:00-08:00",
     "conf_date": "TBD",
-    "place": "TBD",
+    "place": "Malmö, Sweden（往届）",
     "link": "https://eccv.ecva.net/"
   },
   {
@@ -151,7 +151,7 @@ const CONFERENCES = [
     "abstract": null,
     "deadline": "2026-09-15T23:59:00-08:00",
     "conf_date": "TBD",
-    "place": "TBD",
+    "place": "Vienna, Austria（往届）",
     "link": "https://2026.ieee-icra.org/"
   },
   {
@@ -166,7 +166,7 @@ const CONFERENCES = [
     "abstract": null,
     "deadline": "2027-03-02T23:59:59-08:00",
     "conf_date": "TBD",
-    "place": "TBD",
+    "place": "Pittsburgh, PA, USA（往届）",
     "link": "https://2026.ieee-iros.org/"
   },
   {
@@ -181,7 +181,7 @@ const CONFERENCES = [
     "abstract": "2027-01-23T23:59:00-12:00",
     "deadline": "2027-01-30T23:59:00-12:00",
     "conf_date": "TBD",
-    "place": "TBD",
+    "place": "Sydney, Australia（往届）",
     "link": "https://roboticsconference.org"
   },
   {
@@ -196,12 +196,12 @@ const CONFERENCES = [
     "abstract": "2027-05-25T23:59:59-12:00",
     "deadline": "2027-05-28T23:59:59-12:00",
     "conf_date": "TBD",
-    "place": "TBD",
+    "place": "Austin, Texas, USA（往届）",
     "link": "https://www.corl.org/"
   },
   {
     "name": "ARR — August 2026",
-    "full": "ACL Rolling Review · 8 月轮（提交截稿 Aug 3；承诺日 Oct 11，对应 EACL 2027）",
+    "full": "ACL Rolling Review · 8 月轮（提交截稿 Aug 3；承诺日 Oct 11）",
     "category": "ARR (ACL Rolling Review)",
     "est": false,
     "highlight": false,
@@ -209,8 +209,8 @@ const CONFERENCES = [
       "NLP"
     ],
     "deadline": "2026-08-03T23:59:00-12:00",
-    "conf_date": "Commit: Oct 11, 2026",
-    "place": "线上提交",
+    "conf_date": "最近会议：EACL 2027（承诺日 Oct 11, 2026）",
+    "place": "EACL 2027 · 线上提交至 ARR",
     "link": "https://aclrollingreview.org/dates"
   }
 ];
