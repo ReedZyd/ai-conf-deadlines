@@ -140,11 +140,14 @@ function cardHTML(c) {
   card.dataset.deadline = c.deadline;
   card.dataset.est = c.est ? "1" : "";
 
+  const sep = lang === "en" ? ": " : "：";
   const star = c.highlight ? '<span class="star-badge" title="Highlight">⭐</span> ' : "";
   const estBadge = c.est ? `<span class="est-badge" title="${t().estTip}">${t().est}</span>` : "";
   const title = c.link
     ? `<a href="${c.link}" target="_blank" rel="noopener">${c.name}</a>`
     : c.name;
+  // 「（往届）」是估算项地点的上一届标注，英文模式翻译
+  const place = lang === "en" ? (c.place || "").replace("（往届）", " (prev. edition)") : c.place;
 
   card.innerHTML = `
     <div class="card-top">
@@ -155,10 +158,10 @@ function cardHTML(c) {
       <div class="countdown ${u}">${countdownText(msLeft, c.est)}</div>
     </div>
     <div class="meta">
-      <span class="deadline-local">${t().deadline}：${fmtLocal(c.deadline)}</span>
-      ${c.abstract ? `<span>${t().abstract}：${fmtLocal(c.abstract)}</span>` : ""}
-      ${c.conf_date ? `<span>${t().confDate}：${c.conf_date}</span>` : ""}
-      ${c.place ? `<span>📍 ${c.place}</span>` : ""}
+      <span class="deadline-local">${t().deadline}${sep}${fmtLocal(c.deadline)}</span>
+      ${c.abstract ? `<span>${t().abstract}${sep}${fmtLocal(c.abstract)}</span>` : ""}
+      ${c.conf_date ? `<span>${t().confDate}${sep}${c.conf_date}</span>` : ""}
+      ${place ? `<span>📍 ${place}</span>` : ""}
     </div>
     ${c.tags ? `<div class="tags">${c.tags.map((x) => `<span>${x}</span>`).join("")}</div>` : ""}
   `;
