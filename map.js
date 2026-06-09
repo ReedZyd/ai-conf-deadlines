@@ -13,7 +13,11 @@ const t = () => I18N[lang];
 
 // 按年份分配颜色
 const YEAR_COLORS = ["#5b8cff", "#44d07b", "#ffb84d", "#ff5b6e", "#c06bff", "#33c4d8"];
-const located = CONFERENCES.filter((c) => typeof c.lat === "number");
+// 只展示「未结束」的会议（会期结束日 ≥ 今天）
+const _today = new Date().toISOString().slice(0, 10);
+const located = CONFERENCES.filter(
+  (c) => typeof c.lat === "number" && (!c.venue_end || c.venue_end >= _today)
+);
 const years = [...new Set(located.map((c) => c.year))].sort();
 const colorOf = (y) => YEAR_COLORS[years.indexOf(y) % YEAR_COLORS.length];
 const activeYears = new Set(years);

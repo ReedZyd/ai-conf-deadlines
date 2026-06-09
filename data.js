@@ -1,5 +1,5 @@
 // 本文件由 update.py 自动生成，请勿手改（ARR 除外）。
-// 生成时间: 2026-06-09T14:18:23.049300+00:00
+// 生成时间: 2026-06-09T14:42:51.198429+00:00
 
 const CATEGORIES = ["AI 三大会", "ARR (ACL Rolling Review)", "综合 AI", "多智能体", "CV 三大会", "Robotics"];
 
@@ -23,6 +23,7 @@ const CONFERENCES = [
     "venue": "Sydney, Australia",
     "venue_year": 2026,
     "venue_date": "December 6, 2026",
+    "venue_end": "2026-12-06",
     "year": 2026,
     "lat": -33.87,
     "lon": 151.21
@@ -46,6 +47,7 @@ const CONFERENCES = [
     "venue": "Seoul, Korea",
     "venue_year": 2026,
     "venue_date": "July 6-12, 2026",
+    "venue_end": "2026-07-12",
     "year": 2026,
     "lat": 37.57,
     "lon": 126.98
@@ -69,6 +71,7 @@ const CONFERENCES = [
     "venue": "Brazil",
     "venue_year": 2026,
     "venue_date": "May 01-05, 2026",
+    "venue_end": "2026-05-05",
     "year": 2026,
     "lat": -22.91,
     "lon": -43.17
@@ -90,6 +93,7 @@ const CONFERENCES = [
     "venue": "Montréal, Québec, Canada",
     "venue_year": 2027,
     "venue_date": "February 16-23, 2027",
+    "venue_end": "2027-02-23",
     "year": 2027,
     "lat": 45.5,
     "lon": -73.57
@@ -113,6 +117,7 @@ const CONFERENCES = [
     "venue": "Bremen, Germany",
     "venue_year": 2026,
     "venue_date": "August 15-21, 2026",
+    "venue_end": "2026-08-21",
     "year": 2026,
     "lat": 53.08,
     "lon": 8.8
@@ -136,6 +141,7 @@ const CONFERENCES = [
     "venue": "Paphos, Cyprus",
     "venue_year": 2026,
     "venue_date": "May 27-29, 2026",
+    "venue_end": "2026-05-28",
     "year": 2026,
     "lat": 34.77,
     "lon": 32.42
@@ -159,6 +165,7 @@ const CONFERENCES = [
     "venue": "Denver, Colorado, United States",
     "venue_year": 2026,
     "venue_date": "June 3-7, 2026",
+    "venue_end": "2026-06-07",
     "year": 2026,
     "lat": 39.74,
     "lon": -104.99
@@ -182,6 +189,7 @@ const CONFERENCES = [
     "venue": "Honolulu, Hawaii",
     "venue_year": 2025,
     "venue_date": "October 19-25, 2025",
+    "venue_end": "2025-10-25",
     "year": 2025,
     "lat": 21.31,
     "lon": -157.86
@@ -205,6 +213,7 @@ const CONFERENCES = [
     "venue": "Malmö, Sweden",
     "venue_year": 2026,
     "venue_date": "September 8 - 13, 2026",
+    "venue_end": "2026-09-13",
     "year": 2026,
     "lat": 55.6,
     "lon": 13.0
@@ -228,6 +237,7 @@ const CONFERENCES = [
     "venue": "Vienna, Austria",
     "venue_year": 2026,
     "venue_date": "Jun 1-5, 2026",
+    "venue_end": "2026-06-05",
     "year": 2026,
     "lat": 48.21,
     "lon": 16.37
@@ -251,6 +261,7 @@ const CONFERENCES = [
     "venue": "Pittsburgh, PA, USA",
     "venue_year": 2026,
     "venue_date": "September 27 - October 1, 2026",
+    "venue_end": "2026-10-01",
     "year": 2026,
     "lat": 40.44,
     "lon": -79.99
@@ -274,6 +285,7 @@ const CONFERENCES = [
     "venue": "Sydney, Australia",
     "venue_year": 2026,
     "venue_date": "July 13-17, 2026",
+    "venue_end": "2026-07-17",
     "year": 2026,
     "lat": -33.87,
     "lon": 151.21
@@ -297,6 +309,7 @@ const CONFERENCES = [
     "venue": "Austin, Texas, USA",
     "venue_year": 2026,
     "venue_date": "November 10-12, 2026",
+    "venue_end": "2026-11-12",
     "year": 2026,
     "lat": 30.27,
     "lon": -97.74

@@ -112,6 +112,33 @@ def download_yaml_entries():
     return entries
 
 
+_MONTHS = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+
+
+def parse_conf_end(date_str):
+    """把会期文字解析成结束日 ISO (YYYY-MM-DD)，解析失败返回 None。
+    支持：'July 6-12, 2026' / 'September 27 - October 1, 2026' / 'December 6, 2026' 等。"""
+    if not date_str:
+        return None
+    s = str(date_str).lower()
+    ym = _re.search(r"(20\d{2})", s)
+    if not ym:
+        return None
+    year = int(ym.group(1))
+    months = [(m.start(), _MONTHS[m.group(0)[:3]])
+              for m in _re.finditer(r"jan\w*|feb\w*|mar\w*|apr\w*|may|jun\w*|jul\w*|aug\w*|sep\w*|oct\w*|nov\w*|dec\w*", s)]
+    if not months:
+        return None
+    month = months[-1][1]                       # 最后出现的月份 = 结束月
+    tail = s[months[-1][0]:]                     # 该月之后的文字
+    days = [int(d) for d in _re.findall(r"\b(\d{1,2})\b", tail) if int(d) <= 31]
+    day = min(max(days), 28) if days else 28     # 用 28 封顶，避免非法日期
+    return f"{year:04d}-{month:02d}-{day:02d}"
+
+
 def latest_announced_venue(conf):
     """返回该会议「最新已公布地点」的 (year, place, date)，含没有截稿日的未来届。"""
     best = None
@@ -210,6 +237,7 @@ def build():
             item["venue"] = e["venue"]
             item["venue_year"] = e.get("venue_year")
             item["venue_date"] = e.get("venue_date")
+            item["venue_end"] = parse_conf_end(e.get("venue_date"))
         out.append(item)
         flag = "估" if e["est"] else "真"
         print(f"  ✓ {title} {year} [{flag}] {e['deadline']}")
