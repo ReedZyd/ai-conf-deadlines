@@ -28,6 +28,7 @@ const I18N = {
     est: "估",
     estTip: "官方未公布，按上一届日期估计",
     other: "其他",
+    mapLink: "🗺 地图",
     switchTo: "EN",
     locale: "zh-CN",
   },
@@ -47,6 +48,7 @@ const I18N = {
     est: "EST",
     estTip: "Official CFP not out; estimated from last edition",
     other: "Other",
+    mapLink: "🗺 Map",
     switchTo: "中",
     locale: "en-US",
   },
@@ -213,6 +215,7 @@ function applyStaticI18n() {
   searchEl.placeholder = t().search;
   document.getElementById("hidePastLabel").textContent = t().hidePast;
   document.getElementById("onlyStarLabel").textContent = t().onlyStar + " ";
+  document.getElementById("mapLink").textContent = t().mapLink;
   langBtn.textContent = t().switchTo;
 }
 

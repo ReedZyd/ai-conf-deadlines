@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>会议地点地图 · AI Conference Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { padding: 0; }
+    .map-header {
+      max-width: 100%;
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px 20px; border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .map-header h1 { font-size: 20px; }
+    .map-header a.back { color: var(--accent); text-decoration: none; font-size: 14px; }
+    #yearLegend { display: flex; gap: 8px; flex-wrap: wrap; margin-left: auto; }
+    .year-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--card); border: 1px solid var(--border);
+      padding: 5px 11px; border-radius: 20px; font-size: 13px; cursor: pointer;
+      user-select: none; color: var(--muted);
+    }
+    .year-chip.active { color: var(--text); }
+    .year-chip .dot { width: 11px; height: 11px; border-radius: 50%; }
+    #map { width: 100%; height: calc(100vh - 58px); background: #0f1117; }
+    .leaflet-popup-content { font-size: 13px; line-height: 1.5; }
+    .leaflet-popup-content b { font-size: 14px; }
+    .leaflet-popup-content .est { color: #ff9800; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="map-header">
+    <a class="back" href="index.html">← <span id="backTxt">列表</span></a>
+    <h1 id="mapTitle">会议地点地图</h1>
+    <button id="langBtn" class="lang-btn" style="position:static" title="中 / English">EN</button>
+    <div id="yearLegend"></div>
+  </div>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="data.js"></script>
+  <script src="map.js"></script>
+</body>
+</html>

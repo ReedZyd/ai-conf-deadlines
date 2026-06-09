@@ -28,10 +28,16 @@ header {
   position: relative;
 }
 
-.lang-btn {
+.top-actions {
   position: absolute;
   top: 40px;
   right: 0;
+  display: flex;
+  gap: 8px;
+}
+.lang-btn {
+  display: inline-block;
+  text-decoration: none;
   background: var(--card);
   border: 1px solid var(--border);
   color: var(--text);

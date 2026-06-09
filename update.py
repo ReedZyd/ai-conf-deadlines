@@ -205,7 +205,59 @@ def build():
             pass
     # 直接按分类顺序，ARR 单独加入
     out.append(ARR_ENTRY)
+
+    # 地理编码 + 提取年份，供地图使用
+    for item in out:
+        geocode(item)
     return out
+
+
+# 城市/国家 → (lat, lon)，按 place 子串匹配（不区分大小写）
+GEO = {
+    "austin": (30.27, -97.74),
+    "brazil": (-22.91, -43.17),       # Rio de Janeiro
+    "rio de janeiro": (-22.91, -43.17),
+    "bremen": (53.08, 8.80),
+    "denver": (39.74, -104.99),
+    "honolulu": (21.31, -157.86),
+    "hawaii": (21.31, -157.86),
+    "malmö": (55.60, 13.00),
+    "malmo": (55.60, 13.00),
+    "montréal": (45.50, -73.57),
+    "montreal": (45.50, -73.57),
+    "paphos": (34.77, 32.42),
+    "cyprus": (34.77, 32.42),
+    "pittsburgh": (40.44, -79.99),
+    "seoul": (37.57, 126.98),
+    "sydney": (-33.87, 151.21),
+    "vienna": (48.21, 16.37),
+    "wien": (48.21, 16.37),
+    "singapore": (1.35, 103.82),
+    "vancouver": (49.28, -123.12),
+    "new orleans": (29.95, -90.07),
+    "london": (51.51, -0.13),
+    "paris": (48.86, 2.35),
+}
+
+import re as _re
+
+
+def geocode(item):
+    """给会议附加 lat/lon/year/place_prev，匹配不到坐标则不加 lat/lon。"""
+    # 年份：从 name 末尾抓 4 位
+    m = _re.search(r"(20\d{2})", item.get("name", ""))
+    if m:
+        item["year"] = int(m.group(1))
+    place = item.get("place") or ""
+    item["place_prev"] = "（往届）" in place
+    clean = place.replace("（往届）", "").lower()
+    if "线上" in place or "online" in clean:
+        return  # 线上提交，不标点
+    for key, (lat, lon) in GEO.items():
+        if key in clean:
+            item["lat"] = lat
+            item["lon"] = lon
+            return
 
 
 def render_js(confs):
