@@ -23,9 +23,39 @@ const colorOf = (y) => YEAR_COLORS[years.indexOf(y) % YEAR_COLORS.length];
 const activeYears = new Set(years);
 
 const map = L.map("map", { worldCopyJump: true }).setView([25, 10], 2);
-L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-  attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19,
-}).addTo(map);
+const TILES = {
+  dark: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+  light: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+};
+let tileLayer = null;
+function setTiles() {
+  const light = document.documentElement.getAttribute("data-theme") === "light";
+  if (tileLayer) map.removeLayer(tileLayer);
+  tileLayer = L.tileLayer(light ? TILES.light : TILES.dark, {
+    attribution: "&copy; OpenStreetMap &copy; CARTO", maxZoom: 19,
+  }).addTo(map);
+}
+setTiles();
+
+// 主题切换
+const themeBtn = document.getElementById("themeBtn");
+function applyTheme() {
+  themeBtn.textContent =
+    document.documentElement.getAttribute("data-theme") === "light" ? "☀️" : "🌙";
+}
+themeBtn.addEventListener("click", () => {
+  const light = document.documentElement.getAttribute("data-theme") === "light";
+  if (light) {
+    document.documentElement.removeAttribute("data-theme");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
+  }
+  applyTheme();
+  setTiles();
+});
+applyTheme();
 
 let markers = [];
 

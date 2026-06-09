@@ -11,6 +11,20 @@
   --border: #2a2e3a;
 }
 
+/* 日间模式 */
+:root[data-theme="light"] {
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --card-hover: #eef1f6;
+  --text: #1a1d27;
+  --muted: #5b6170;
+  --accent: #2f6bff;
+  --urgent: #e23a4e;
+  --soon: #d98512;
+  --safe: #1aa85a;
+  --border: #dde1e8;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {

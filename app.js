@@ -236,6 +236,25 @@ langBtn.addEventListener("click", () => {
   render();
 });
 
+// 主题切换
+const themeBtn = document.getElementById("themeBtn");
+function applyTheme() {
+  themeBtn.textContent =
+    document.documentElement.getAttribute("data-theme") === "light" ? "☀️" : "🌙";
+}
+themeBtn.addEventListener("click", () => {
+  const light = document.documentElement.getAttribute("data-theme") === "light";
+  if (light) {
+    document.documentElement.removeAttribute("data-theme");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
+  }
+  applyTheme();
+});
+applyTheme();
+
 searchEl.addEventListener("input", render);
 hidePastEl.addEventListener("change", render);
 onlyStarEl.addEventListener("change", render);

@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI 会议 Deadline 追踪</title>
   <link rel="stylesheet" href="style.css" />
+  <script>if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light");</script>
 </head>
 <body>
   <header>
     <div class="top-actions">
       <a id="mapLink" class="lang-btn" href="map.html">🗺 地图</a>
+      <button id="themeBtn" class="lang-btn" title="日间 / 夜间">🌙</button>
       <button id="langBtn" class="lang-btn" title="中 / English">EN</button>
     </div>
     <h1 id="pageTitle">AI 会议 Deadline 追踪</h1>

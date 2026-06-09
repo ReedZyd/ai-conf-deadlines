@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="style.css" />
+  <script>if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light");</script>
   <style>
     body { padding: 0; }
     .map-header {
@@ -32,7 +33,7 @@
     .leaflet-popup-content .est { color: #ff9800; font-style: italic; }
     /* 常驻标签 */
     .conf-label.leaflet-tooltip {
-      background: rgba(20, 23, 33, 0.92);
+      background: var(--card);
       border: 1px solid var(--border);
       color: var(--text);
       border-radius: 6px;
@@ -53,6 +54,7 @@
   <div class="map-header">
     <a class="back" href="index.html">← <span id="backTxt">列表</span></a>
     <h1 id="mapTitle">会议地点地图</h1>
+    <button id="themeBtn" class="lang-btn" style="position:static" title="日间 / 夜间">🌙</button>
     <button id="langBtn" class="lang-btn" style="position:static" title="中 / English">EN</button>
     <div id="yearLegend"></div>
   </div>
