@@ -143,6 +143,8 @@ def pick_edition(conf, now):
     # 全部已过：取最近一届，逐年 +1 直到落到未来（兼容隔年会议如 ICCV/ECCV）
     e = dict(editions[-1])
     e["est"] = True
+    e["prev_deadline"] = e["deadline"]  # 上一届真实截稿（bump 前）
+    e["prev_year"] = e["year"]
     years = 0
     while parse_iso(e["deadline"]) < now:
         e["deadline"] = add_one_year(e["deadline"])
@@ -173,7 +175,7 @@ def build():
             print(f"  ! {title} 无可用截稿日，跳过")
             continue
         year = e.get("year") or ""
-        out.append({
+        item = {
             "name": f"{title} {year}".strip(),
             "full": conf.get("description", "") or "",
             "category": category,
@@ -185,7 +187,11 @@ def build():
             "conf_date": e["conf_date"] or "TBD",
             "place": e["place"] or "TBD",
             "link": e["link"],
-        })
+        }
+        if e.get("prev_deadline"):
+            item["prev_deadline"] = e["prev_deadline"]
+            item["prev_year"] = e.get("prev_year")
+        out.append(item)
         flag = "估" if e["est"] else "真"
         print(f"  ✓ {title} {year} [{flag}] {e['deadline']}")
 

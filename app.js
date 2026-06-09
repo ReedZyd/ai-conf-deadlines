@@ -19,6 +19,7 @@ const I18N = {
     hidePast: "隐藏已截稿",
     onlyStar: "只看 ⭐",
     deadline: "截稿",
+    prevDeadline: "上届截稿",
     abstract: "摘要",
     confDate: "会期",
     place: "地点",
@@ -37,6 +38,7 @@ const I18N = {
     hidePast: "Hide past",
     onlyStar: "Starred only",
     deadline: "Deadline",
+    prevDeadline: "Last edition",
     abstract: "Abstract",
     confDate: "Dates",
     place: "Place",
@@ -159,6 +161,7 @@ function cardHTML(c) {
     </div>
     <div class="meta">
       <span class="deadline-local">${t().deadline}${sep}${fmtLocal(c.deadline)}</span>
+      ${c.prev_deadline ? `<span class="prev-deadline">${t().prevDeadline}${sep}${fmtLocal(c.prev_deadline)}</span>` : ""}
       ${c.abstract ? `<span>${t().abstract}${sep}${fmtLocal(c.abstract)}</span>` : ""}
       ${c.conf_date ? `<span>${t().confDate}${sep}${c.conf_date}</span>` : ""}
       ${place ? `<span>📍 ${place}</span>` : ""}

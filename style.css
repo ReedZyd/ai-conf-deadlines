@@ -117,6 +117,7 @@ main { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; 
 
 .meta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; color: var(--muted); font-size: 13px; }
 .meta .deadline-local { color: var(--text); }
+.meta .prev-deadline { color: var(--soon); font-style: italic; }
 
 .tags { display: flex; gap: 6px; margin-top: 10px; }
 .tags span {
