@@ -45,14 +45,16 @@ TARGETS = [
     ("CoRL",    "Robotics",  False, ["Robotics"]),
 ]
 
-# ARR 手动占位（滚动制，按当前轮次自行修改）
+# ARR 手动维护（滚动制，10 周一轮；换轮时改这里的 name/deadline）
+# 官方排期 https://aclrollingreview.org/dates ：
+#   May 2026 轮 5/25(已过) → Aug 2026 轮 8/3 → Oct 2026 轮 10/12
 ARR_ENTRY = {
-    "name": "ARR — 下一轮",
-    "full": "ACL Rolling Review（约每两月一轮，按当前轮次填）",
+    "name": "ARR — August 2026",
+    "full": "ACL Rolling Review · 8 月轮（提交截稿 Aug 3；承诺日 Oct 11，对应 EACL 2027）",
     "category": "ARR (ACL Rolling Review)",
-    "est": True, "highlight": False, "tags": ["NLP"],
-    "deadline": "2026-06-15T23:59:00-12:00",
-    "conf_date": "—", "place": "线上提交",
+    "est": False, "highlight": False, "tags": ["NLP"],
+    "deadline": "2026-08-03T23:59:00-12:00",
+    "conf_date": "Commit: Oct 11, 2026", "place": "线上提交",
     "link": "https://aclrollingreview.org/dates",
 }
 

@@ -1,5 +1,5 @@
 // 本文件由 update.py 自动生成，请勿手改（ARR 除外）。
-// 生成时间: 2026-06-09T13:34:35.954980+00:00
+// 生成时间: 2026-06-09T13:47:02.534834+00:00
 
 const CATEGORIES = ["AI 三大会", "ARR (ACL Rolling Review)", "综合 AI", "多智能体", "CV 三大会", "Robotics"];
 
@@ -200,16 +200,16 @@ const CONFERENCES = [
     "link": "https://www.corl.org/"
   },
   {
-    "name": "ARR — 下一轮",
-    "full": "ACL Rolling Review（约每两月一轮，按当前轮次填）",
+    "name": "ARR — August 2026",
+    "full": "ACL Rolling Review · 8 月轮（提交截稿 Aug 3；承诺日 Oct 11，对应 EACL 2027）",
     "category": "ARR (ACL Rolling Review)",
-    "est": true,
+    "est": false,
     "highlight": false,
     "tags": [
       "NLP"
     ],
-    "deadline": "2026-06-15T23:59:00-12:00",
-    "conf_date": "—",
+    "deadline": "2026-08-03T23:59:00-12:00",
+    "conf_date": "Commit: Oct 11, 2026",
     "place": "线上提交",
     "link": "https://aclrollingreview.org/dates"
   }
