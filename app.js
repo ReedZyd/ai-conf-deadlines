@@ -150,8 +150,12 @@ function cardHTML(c) {
   const title = c.link
     ? `<a href="${c.link}" target="_blank" rel="noopener">${c.name}</a>`
     : c.name;
-  // 「（往届）」是估算项地点的上一届标注，英文模式翻译
-  const place = lang === "en" ? (c.place || "").replace("（往届）", " (prev. edition)") : c.place;
+  // 地点为「最新已公布届」的真实城市；若该届年份与截稿届不同，标注届年
+  let place = c.place || "";
+  if (place && c.venue_year) {
+    const conf = c.name.split(" ")[0];
+    place += lang === "en" ? ` · ${conf} ${c.venue_year}` : ` · ${conf} ${c.venue_year} 届`;
+  }
 
   card.innerHTML = `
     <div class="card-top">

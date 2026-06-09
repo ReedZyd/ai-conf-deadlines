@@ -4,11 +4,9 @@
 
 const I18N = {
   zh: { title: "会议地点地图", back: "列表", switchTo: "EN",
-        deadline: "截稿", place: "地点", prev: "（地点为往届，官方未定）",
-        noGeo: "无坐标会议（线上/地点未公布）" },
+        deadline: "截稿", edition: "届", nextDl: "下一届截稿(估)" },
   en: { title: "Conference Location Map", back: "List", switchTo: "中",
-        deadline: "Deadline", place: "Place", prev: "(last-edition location; venue TBA)",
-        noGeo: "Without coordinates (online / venue TBA)" },
+        deadline: "Deadline", edition: "edition", nextDl: "Next deadline (est.)" },
 };
 let lang = localStorage.getItem("lang") === "en" ? "en" : "zh";
 const t = () => I18N[lang];
@@ -46,11 +44,13 @@ function draw() {
       radius: 8, color: "#fff", weight: 1.5,
       fillColor: colorOf(c.year), fillOpacity: 0.9,
     }).addTo(map);
-    const prevNote = c.place_prev ? `<br><span class="est">${t().prev}</span>` : "";
+    const conf = c.name.split(" ")[0];
+    const title = c.venue_year ? `${conf} ${c.venue_year}` : c.name;
+    const dlLabel = c.est ? t().nextDl : t().deadline;
     m.bindPopup(
-      `<b>${c.name}</b><br>` +
-      `📍 ${(c.place || "").replace("（往届）", "")}` + prevNote + `<br>` +
-      `${t().deadline}: ${fmt(c.deadline)}`
+      `<b>${title}</b><br>` +
+      `📍 ${c.venue || c.place || ""}<br>` +
+      `${dlLabel}: ${fmt(c.deadline)}`
     );
     markers.push(m);
   }

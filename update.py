@@ -112,6 +112,18 @@ def download_yaml_entries():
     return entries
 
 
+def latest_announced_venue(conf):
+    """返回该会议「最新已公布地点」的 (year, place, date)，含没有截稿日的未来届。"""
+    best = None
+    for c in conf.get("confs", []) or []:
+        place = (c.get("place") or "").strip()
+        yr = c.get("year")
+        if place and place.upper() != "TBD" and yr:
+            if best is None or yr > best[0]:
+                best = (yr, place, str(c.get("date", "")).strip())
+    return best
+
+
 def pick_edition(conf, now):
     """从一个会议的多届里挑出要展示的那届，返回 dict 或 None"""
     editions = []
@@ -139,25 +151,28 @@ def pick_edition(conf, now):
     if future:
         e = future[0]
         e["est"] = False
-        return e
-    # 全部已过：取最近一届，逐年 +1 直到落到未来（兼容隔年会议如 ICCV/ECCV）
-    e = dict(editions[-1])
-    e["est"] = True
-    e["prev_deadline"] = e["deadline"]  # 上一届真实截稿（bump 前）
-    e["prev_year"] = e["year"]
-    years = 0
-    while parse_iso(e["deadline"]) < now:
-        e["deadline"] = add_one_year(e["deadline"])
-        years += 1
-    for _ in range(years):
-        if e["abstract"]:
-            e["abstract"] = add_one_year(e["abstract"])
-    if e["year"]:
-        e["year"] = e["year"] + years
-    e["conf_date"] = "TBD"
-    # 地点保留上一届的（标注「往届」），供参考；官方公布后会自动替换为真实地点
-    if e["place"] and e["place"] != "TBD":
-        e["place"] = f"{e['place']}（往届）"
+    else:
+        # 截稿已过且下一届 CFP 未公布：截稿按最近一届逐年 +1 估算
+        e = dict(editions[-1])
+        e["est"] = True
+        e["prev_deadline"] = e["deadline"]  # 上一届真实截稿（bump 前）
+        e["prev_year"] = e["year"]
+        years = 0
+        while parse_iso(e["deadline"]) < now:
+            e["deadline"] = add_one_year(e["deadline"])
+            years += 1
+        for _ in range(years):
+            if e["abstract"]:
+                e["abstract"] = add_one_year(e["abstract"])
+        if e["year"]:
+            e["year"] = e["year"] + years
+        e["conf_date"] = "TBD"
+
+    # 地点：始终用「最新已公布地点」的真实城市与年份（地点通常早于 CFP 公布）
+    v = latest_announced_venue(conf)
+    if v:
+        e["venue_year"], e["venue"], e["venue_date"] = v
+        e["place"] = v[1]                       # 真实城市，不再标「往届」
     return e
 
 
@@ -191,6 +206,10 @@ def build():
         if e.get("prev_deadline"):
             item["prev_deadline"] = e["prev_deadline"]
             item["prev_year"] = e.get("prev_year")
+        if e.get("venue"):
+            item["venue"] = e["venue"]
+            item["venue_year"] = e.get("venue_year")
+            item["venue_date"] = e.get("venue_date")
         out.append(item)
         flag = "估" if e["est"] else "真"
         print(f"  ✓ {title} {year} [{flag}] {e['deadline']}")
@@ -243,14 +262,16 @@ import re as _re
 
 
 def geocode(item):
-    """给会议附加 lat/lon/year/place_prev，匹配不到坐标则不加 lat/lon。"""
-    # 年份：从 name 末尾抓 4 位
-    m = _re.search(r"(20\d{2})", item.get("name", ""))
-    if m:
-        item["year"] = int(m.group(1))
-    place = item.get("place") or ""
-    item["place_prev"] = "（往届）" in place
-    clean = place.replace("（往届）", "").lower()
+    """给会议附加 lat/lon 及地图年份；匹配不到坐标则不加 lat/lon。"""
+    # 地图年份用「真实已公布届」的年份；没有则退回名字里的年份
+    if item.get("venue_year"):
+        item["year"] = item["venue_year"]
+    else:
+        m = _re.search(r"(20\d{2})", item.get("name", ""))
+        if m:
+            item["year"] = int(m.group(1))
+    place = (item.get("venue") or item.get("place") or "")
+    clean = place.lower()
     if "线上" in place or "online" in clean:
         return  # 线上提交，不标点
     for key, (lat, lon) in GEO.items():
