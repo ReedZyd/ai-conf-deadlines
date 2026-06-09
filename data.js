@@ -1,7 +1,7 @@
 // 本文件由 update.py 自动生成，请勿手改（ARR 除外）。
-// 生成时间: 2026-06-09T15:28:53.303527+00:00
+// 生成时间: 2026-06-09T15:30:32.247625+00:00
 
-const CATEGORIES = ["AI 三大会", "ARR (ACL Rolling Review)", "NLP", "综合 AI", "多智能体", "CV 三大会", "其他 CV/视觉", "Robotics", "机器学习/ML", "数据挖掘/检索", "图形/语音/多媒体", "Web/交叉应用"];
+const CATEGORIES = ["AI 三大会", "ARR (ACL Rolling Review)", "NLP", "综合 AI", "多智能体", "CV 三大会", "其他 CV/视觉", "Robotics", "机器学习/ML", "图形/语音/多媒体", "Web/交叉应用"];
 
 const CONFERENCES = [
   {
@@ -459,30 +459,6 @@ const CONFERENCES = [
     "lon": -0.13
   },
   {
-    "name": "CIKM 2027",
-    "full": "ACM International Conference on Information and Knowledge Management",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2027-05-16T23:59:59-12:00",
-    "deadline": "2027-05-23T23:59:59-12:00",
-    "conf_date": "TBD",
-    "place": "Rome, Italy",
-    "link": "https://cikm2026.diag.uniroma1.it/",
-    "prev_deadline": "2026-05-23T23:59:59-12:00",
-    "prev_year": 2026,
-    "venue": "Rome, Italy",
-    "venue_year": 2026,
-    "venue_date": "November 7-11, 2026",
-    "venue_end": "2026-11-11",
-    "year": 2026,
-    "lat": 41.9,
-    "lon": 12.5
-  },
-  {
     "name": "COLING 2027",
     "full": "INTERNATIONNAL CONFERENCE ON COMPUTATIONAL LINGUISTICS",
     "category": "NLP",
@@ -805,52 +781,6 @@ const CONFERENCES = [
     "year": 2026,
     "lat": 55.6,
     "lon": 13.0
-  },
-  {
-    "name": "ECIR 2027",
-    "full": "European Conference on Information Retrieval",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2026-09-25T23:59:59-12:00",
-    "deadline": "2026-10-02T23:59:59-12:00",
-    "conf_date": "TBD",
-    "place": "Delft, The Netherlands",
-    "link": "https://ecir2026.eu/",
-    "prev_deadline": "2025-10-02T23:59:59-12:00",
-    "prev_year": 2026,
-    "venue": "Delft, The Netherlands",
-    "venue_year": 2026,
-    "venue_date": "March 30 - April 01, 2026",
-    "venue_end": "2026-04-01",
-    "year": 2026,
-    "lat": 52.01,
-    "lon": 4.36
-  },
-  {
-    "name": "ECML-PKDD 2027",
-    "full": "European Conference on Machine Learning and 25th Principles and Practice of Knowledge Discovery in Databases",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2027-03-05T23:59:59-12:00",
-    "deadline": "2027-03-12T23:59:59-12:00",
-    "conf_date": "TBD",
-    "place": "Naples, Italy",
-    "link": "https://ecmlpkdd.org/2026/",
-    "prev_deadline": "2026-03-12T23:59:59-12:00",
-    "prev_year": 2026,
-    "venue": "Naples, Italy",
-    "venue_year": 2026,
-    "venue_date": "September 7-11, 2026",
-    "venue_end": "2026-09-11",
-    "year": 2026
   },
   {
     "name": "EGSR 2027",
@@ -1237,28 +1167,6 @@ const CONFERENCES = [
     "year": 2026,
     "lat": 48.21,
     "lon": 16.37
-  },
-  {
-    "name": "ICDM 2027",
-    "full": "IEEE International Conference on Data Mining",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2027-05-30T23:59:59-12:00",
-    "deadline": "2027-06-06T23:59:59-12:00",
-    "conf_date": "TBD",
-    "place": "Shenyang, China",
-    "link": "http://icdm2026.neu.edu.cn/",
-    "prev_deadline": "2026-06-06T23:59:59-12:00",
-    "prev_year": 2026,
-    "venue": "Shenyang, China",
-    "venue_year": 2026,
-    "venue_date": "November 12-15, 2026",
-    "venue_end": "2026-11-15",
-    "year": 2026
   },
   {
     "name": "ICIP 2027",
@@ -1699,28 +1607,6 @@ const CONFERENCES = [
     "year": 2026
   },
   {
-    "name": "ISWC 2027",
-    "full": "International Semantic Web Conference",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2027-05-02T23:59:59-12:00",
-    "deadline": "2027-05-07T23:59:59-12:00",
-    "conf_date": "TBD",
-    "place": "Bari, Italy",
-    "link": "https://iswc2026.semanticweb.org/",
-    "prev_deadline": "2026-05-07T23:59:59-12:00",
-    "prev_year": 2026,
-    "venue": "Bari, Italy",
-    "venue_year": 2026,
-    "venue_date": "October 25-29, 2026",
-    "venue_end": "2026-10-28",
-    "year": 2026
-  },
-  {
     "name": "InterSpeech 2027",
     "full": "Conference of the International Speech Communication Association",
     "category": "图形/语音/多媒体",
@@ -1929,30 +1815,6 @@ const CONFERENCES = [
     "lon": 151.21
   },
   {
-    "name": "PAKDD 2027",
-    "full": "Pacific-Asia Conference on Knowledge Discovery and Data Mining",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": null,
-    "deadline": "2026-11-15T23:59:59-08:00",
-    "conf_date": "TBD",
-    "place": "Hong Kong, China",
-    "link": "https://www.pakdd2026.org/",
-    "prev_deadline": "2025-11-15T23:59:59-08:00",
-    "prev_year": 2026,
-    "venue": "Hong Kong, China",
-    "venue_year": 2026,
-    "venue_date": "June 9-12, 2026",
-    "venue_end": "2026-06-12",
-    "year": 2026,
-    "lat": 22.32,
-    "lon": 114.17
-  },
-  {
     "name": "PG 2027",
     "full": "Pacific Graphics, The Pacific Conference on Computer Graphics and Applications",
     "category": "图形/语音/多媒体",
@@ -2139,28 +2001,6 @@ const CONFERENCES = [
     "lon": 139.64
   },
   {
-    "name": "RecSys 2027",
-    "full": "ACM Conference on Recommender Systems",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2027-04-14T23:59:59-12:00",
-    "deadline": "2027-04-21T23:59:59-12:00",
-    "conf_date": "TBD",
-    "place": "Minneapolis, Minnesota, USA",
-    "link": "https://recsys.acm.org/recsys26",
-    "prev_deadline": "2026-04-21T23:59:59-12:00",
-    "prev_year": 2026,
-    "venue": "Minneapolis, Minnesota, USA",
-    "venue_year": 2026,
-    "venue_date": "September 28 - October 2, 2026",
-    "venue_end": "2026-10-02",
-    "year": 2026
-  },
-  {
     "name": "RuleML+RR 2027",
     "full": "International Joint Conference on Rules and Reasoning",
     "category": "机器学习/ML",
@@ -2207,28 +2047,6 @@ const CONFERENCES = [
     "lon": 2.17
   },
   {
-    "name": "SDM 2027",
-    "full": "SIAM International Conference on Data Mining",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2026-09-27T23:59:59-08:00",
-    "deadline": "2026-10-04T23:59:59-08:00",
-    "conf_date": "TBD",
-    "place": "Alexandria, Virginia, USA",
-    "link": "https://www.siam.org/conferences-events/siam-conferences/sdm25",
-    "prev_deadline": "2024-10-04T23:59:59-08:00",
-    "prev_year": 2025,
-    "venue": "Alexandria, Virginia, USA",
-    "venue_year": 2025,
-    "venue_date": "May 1-3, 2025",
-    "venue_end": "2025-05-03",
-    "year": 2025
-  },
-  {
     "name": "SGP 2027",
     "full": "Eurographics Symposium on Geometry Processing",
     "category": "图形/语音/多媒体",
@@ -2249,54 +2067,6 @@ const CONFERENCES = [
     "venue_date": "July 1 - 3, 2026",
     "venue_end": "2026-07-03",
     "year": 2026
-  },
-  {
-    "name": "SIGIR 2027",
-    "full": "International Conference on Research on Development in Information Retrieval",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2027-01-15T23:59:59-12:00",
-    "deadline": "2027-01-22T23:59:59-12:00",
-    "conf_date": "TBD",
-    "place": "Melbourne, Australia",
-    "link": "https://sigir2026.org/en-AU",
-    "prev_deadline": "2026-01-22T23:59:59-12:00",
-    "prev_year": 2026,
-    "venue": "Melbourne, Australia",
-    "venue_year": 2026,
-    "venue_date": "July 20-24, 2026",
-    "venue_end": "2026-07-24",
-    "year": 2026,
-    "lat": -37.81,
-    "lon": 144.96
-  },
-  {
-    "name": "SIGKDD 2027",
-    "full": "ACM Knowledge Discovery and Data Mining",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": true,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2027-02-01T23:59:59-12:00",
-    "deadline": "2027-02-08T23:59:59-12:00",
-    "conf_date": "TBD",
-    "place": "Jeju, Korea",
-    "link": "https://kdd2026.kdd.org/",
-    "prev_deadline": "2026-02-08T23:59:59-12:00",
-    "prev_year": 2026,
-    "venue": "Jeju, Korea",
-    "venue_year": 2026,
-    "venue_date": "August 9-13, 2026",
-    "venue_end": "2026-08-13",
-    "year": 2026,
-    "lat": 33.5,
-    "lon": 126.53
   },
   {
     "name": "SIGSPATIAL 2027",
@@ -2495,28 +2265,6 @@ const CONFERENCES = [
     "venue_date": "December 1-4, 2026",
     "venue_end": "2026-12-04",
     "year": 2026,
-    "lat": 22.32,
-    "lon": 114.17
-  },
-  {
-    "name": "WSDM 2027",
-    "full": "International Conference on Web Search and Data Mining",
-    "category": "数据挖掘/检索",
-    "highlight": false,
-    "est": false,
-    "tags": [
-      "DM"
-    ],
-    "abstract": "2026-08-11T23:59:59-12:00",
-    "deadline": "2026-08-18T23:59:59-12:00",
-    "conf_date": "February 15 - 19, 2027",
-    "place": "Cordis, Hong Kong SAR, China",
-    "link": "https://wsdm-conference.org/2027/",
-    "venue": "Cordis, Hong Kong SAR, China",
-    "venue_year": 2027,
-    "venue_date": "February 15 - 19, 2027",
-    "venue_end": "2027-02-19",
-    "year": 2027,
     "lat": 22.32,
     "lon": 114.17
   },

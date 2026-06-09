@@ -28,13 +28,12 @@ CATEGORIES = [
     "其他 CV/视觉",
     "Robotics",
     "机器学习/ML",
-    "数据挖掘/检索",
     "图形/语音/多媒体",
     "Web/交叉应用",
 ]
 
-# 纳入的 ccfddl 方向（只收 AI 直接相关，跳过系统/安全/网络/体系结构等）
-INCLUDE_SUBS = {"AI", "CG", "DB", "MX"}
+# 纳入的 ccfddl 方向（只收 AI 直接相关，跳过系统/安全/网络/数据库等）
+INCLUDE_SUBS = {"AI", "CG", "MX"}
 
 # 重点会议的精细分类与标签（覆盖默认按 sub 归类）
 # title -> (category, highlight, tags)
