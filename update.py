@@ -21,29 +21,62 @@ REPO_TARBALL = "https://codeload.github.com/ccfddl/ccf-deadlines/tar.gz/refs/hea
 CATEGORIES = [
     "AI 三大会",
     "ARR (ACL Rolling Review)",
+    "NLP",
     "综合 AI",
     "多智能体",
     "CV 三大会",
+    "其他 CV/视觉",
     "Robotics",
+    "机器学习/ML",
+    "数据挖掘/检索",
+    "图形/语音/多媒体",
+    "Web/交叉应用",
 ]
 
-# 目标会议：title 必须与 ccfddl 中的 title 一致
-# (title, category, highlight, tags)
-TARGETS = [
-    ("NeurIPS", "AI 三大会", True, ["ML"]),
-    ("ICML",    "AI 三大会", True, ["ML"]),
-    ("ICLR",    "AI 三大会", True, ["ML"]),
-    ("AAAI",    "综合 AI",   False, ["AI"]),
-    ("IJCAI",   "综合 AI",   False, ["AI"]),
-    ("AAMAS",   "多智能体",  False, ["MAS"]),
-    ("CVPR",    "CV 三大会", False, ["CV"]),
-    ("ICCV",    "CV 三大会", False, ["CV"]),
-    ("ECCV",    "CV 三大会", False, ["CV"]),
-    ("ICRA",    "Robotics",  False, ["Robotics"]),
-    ("IROS",    "Robotics",  False, ["Robotics"]),
-    ("RSS",     "Robotics",  False, ["Robotics"]),
-    ("CoRL",    "Robotics",  False, ["Robotics"]),
-]
+# 纳入的 ccfddl 方向（只收 AI 直接相关，跳过系统/安全/网络/体系结构等）
+INCLUDE_SUBS = {"AI", "CG", "DB", "MX"}
+
+# 重点会议的精细分类与标签（覆盖默认按 sub 归类）
+# title -> (category, highlight, tags)
+SPECIAL = {
+    "NeurIPS": ("AI 三大会", True, ["ML"]),
+    "ICML":    ("AI 三大会", True, ["ML"]),
+    "ICLR":    ("AI 三大会", True, ["ML"]),
+    "AAAI":    ("综合 AI", False, ["AI"]),
+    "IJCAI":   ("综合 AI", False, ["AI"]),
+    "ECAI":    ("综合 AI", False, ["AI"]),
+    "PRICAI":  ("综合 AI", False, ["AI"]),
+    "AAMAS":   ("多智能体", False, ["MAS"]),
+    "DAI":     ("多智能体", False, ["MAS"]),
+    "CVPR":    ("CV 三大会", False, ["CV"]),
+    "ICCV":    ("CV 三大会", False, ["CV"]),
+    "ECCV":    ("CV 三大会", False, ["CV"]),
+    "ACL":     ("NLP", False, ["NLP"]),
+    "EMNLP":   ("NLP", False, ["NLP"]),
+    "NAACL":   ("NLP", False, ["NLP"]),
+    "EACL":    ("NLP", False, ["NLP"]),
+    "COLING":  ("NLP", False, ["NLP"]),
+    "CoNLL":   ("NLP", False, ["NLP"]),
+    "IJCNLP":  ("NLP", False, ["NLP"]),
+    "NLPCC":   ("NLP", False, ["NLP"]),
+    "ICRA":    ("Robotics", False, ["Robotics"]),
+    "IROS":    ("Robotics", False, ["Robotics"]),
+    "RSS":     ("Robotics", False, ["Robotics"]),
+    "CoRL":    ("Robotics", False, ["Robotics"]),
+    "ACCV":    ("其他 CV/视觉", False, ["CV"]),
+    "WACV":    ("其他 CV/视觉", False, ["CV"]),
+    "BMVC":    ("其他 CV/视觉", False, ["CV"]),
+    "3DV":     ("其他 CV/视觉", False, ["CV"]),
+    "ICPR":    ("其他 CV/视觉", False, ["CV"]),
+}
+
+# 按 sub 的默认分类（未在 SPECIAL 中的会议）
+SUB_DEFAULT = {
+    "AI": ("机器学习/ML", ["ML"]),
+    "CG": ("图形/语音/多媒体", ["CG"]),
+    "DB": ("数据挖掘/检索", ["DM"]),
+    "MX": ("Web/交叉应用", ["APP"]),
+}
 
 # ARR 手动维护（滚动制，10 周一轮；换轮时改这里的 name/deadline）
 # 官方排期 https://aclrollingreview.org/dates ：
@@ -60,16 +93,33 @@ ARR_ENTRY = {
 }
 
 
+# 命名时区 → UTC 偏移小时
+_TZ_NAMED = {
+    "AOE": -12, "UTC": 0, "GMT": 0,
+    "PT": -8, "PST": -8, "PDT": -7,
+    "ET": -5, "EST": -5, "EDT": -4,
+    "CT": -6, "CST": -6, "MT": -7,
+    "CET": 1, "CEST": 2, "BST": 1, "JST": 9, "KST": 9, "AEST": 10,
+}
+
+
 def tz_offset(tzstr):
-    """'UTC-12' / 'AoE' / 'UTC+8' -> '-12:00' 形式"""
-    if not tzstr or str(tzstr).upper() == "AOE":
+    """'UTC-12' / 'AoE' / 'UTC+8' / 'PT' -> '-12:00' 形式；无法解析则按 AoE。"""
+    if not tzstr:
         return "-12:00"
-    s = str(tzstr).upper().replace("UTC", "").strip()
+    s = str(tzstr).upper().strip()
+    if s in _TZ_NAMED:
+        h = _TZ_NAMED[s]
+        return f"{'+' if h >= 0 else '-'}{abs(h):02d}:00"
+    s = s.replace("UTC", "").replace("GMT", "").strip()
     if not s:
         return "+00:00"
-    sign = "+" if s[0] != "-" else "-"
-    num = s.lstrip("+-").split(":")[0]
-    return f"{sign}{int(num):02d}:00"
+    try:
+        sign = "-" if s[0] == "-" else "+"
+        num = int(s.lstrip("+-").split(":")[0])
+        return f"{sign}{num:02d}:00"
+    except (ValueError, IndexError):
+        return "-12:00"  # 兜底按 AoE
 
 
 def to_iso(date_str, tzstr):
@@ -207,14 +257,20 @@ def build():
     now = datetime.now(timezone(timedelta(hours=-12)))  # 用 AoE 当前时刻
     src = download_yaml_entries()
     out = []
-    for title, category, highlight, tags in TARGETS:
-        conf = src.get(title)
-        if not conf:
-            print(f"  ! 数据源未找到 {title}，跳过")
+    skipped = 0
+    for title in sorted(src.keys()):
+        conf = src[title]
+        sub = str(conf.get("sub", ""))
+        if sub not in INCLUDE_SUBS or not title or title == "None":
             continue
+        if title in SPECIAL:
+            category, highlight, tags = SPECIAL[title]
+        else:
+            category, tags = SUB_DEFAULT.get(sub, ("Web/交叉应用", ["APP"]))
+            highlight = False
         e = pick_edition(conf, now)
         if not e:
-            print(f"  ! {title} 无可用截稿日，跳过")
+            skipped += 1
             continue
         year = e.get("year") or ""
         item = {
@@ -239,19 +295,9 @@ def build():
             item["venue_date"] = e.get("venue_date")
             item["venue_end"] = parse_conf_end(e.get("venue_date"))
         out.append(item)
-        flag = "估" if e["est"] else "真"
-        print(f"  ✓ {title} {year} [{flag}] {e['deadline']}")
 
-    # 插入 ARR（放到 AI 三大会之后）
-    out_with_arr = []
-    inserted = False
-    for item in out:
-        out_with_arr.append(item)
-        if not inserted and item["category"] == "AI 三大会":
-            # 在最后一个 AI 三大会后插入；简单起见循环结束统一插，这里跳过
-            pass
-    # 直接按分类顺序，ARR 单独加入
     out.append(ARR_ENTRY)
+    print(f"  纳入 {len(out)} 个会议（跳过 {skipped} 个无可用截稿日）")
 
     # 地理编码 + 提取年份，供地图使用
     for item in out:
@@ -284,6 +330,74 @@ GEO = {
     "new orleans": (29.95, -90.07),
     "london": (51.51, -0.13),
     "paris": (48.86, 2.35),
+    # 常见会议城市（北美）
+    "seattle": (47.61, -122.33),
+    "san francisco": (37.77, -122.42),
+    "los angeles": (34.05, -118.24),
+    "san diego": (32.72, -117.16),
+    "nashville": (36.16, -86.78),
+    "atlanta": (33.75, -84.39),
+    "detroit": (42.33, -83.05),
+    "philadelphia": (39.95, -75.17),
+    "washington": (38.91, -77.04),
+    "new york": (40.71, -74.01),
+    "boston": (42.36, -71.06),
+    "chicago": (41.88, -87.63),
+    "phoenix": (33.45, -112.07),
+    "toronto": (43.65, -79.38),
+    "mexico city": (19.43, -99.13),
+    # 欧洲
+    "amsterdam": (52.37, 4.90),
+    "barcelona": (41.39, 2.17),
+    "madrid": (40.42, -3.70),
+    "berlin": (52.52, 13.40),
+    "munich": (48.14, 11.58),
+    "milan": (45.46, 9.19),
+    "milano": (45.46, 9.19),
+    "rome": (41.90, 12.50),
+    "zurich": (47.37, 8.54),
+    "geneva": (46.20, 6.14),
+    "lisbon": (38.72, -9.14),
+    "dublin": (53.35, -6.26),
+    "copenhagen": (55.68, 12.57),
+    "stockholm": (59.33, 18.06),
+    "helsinki": (60.17, 24.94),
+    "prague": (50.08, 14.44),
+    "warsaw": (52.23, 21.01),
+    "athens": (37.98, 23.73),
+    "istanbul": (41.01, 28.98),
+    "delft": (52.01, 4.36),
+    "edinburgh": (55.95, -3.19),
+    "glasgow": (55.86, -4.25),
+    "kigali": (-1.94, 30.06),
+    "tel-aviv": (32.08, 34.78),
+    "tel aviv": (32.08, 34.78),
+    "abu dhabi": (24.45, 54.38),
+    "cape town": (-33.92, 18.42),
+    # 亚太
+    "tokyo": (35.68, 139.69),
+    "yokohama": (35.44, 139.64),
+    "kyoto": (35.01, 135.77),
+    "osaka": (34.69, 135.50),
+    "beijing": (39.90, 116.41),
+    "shanghai": (31.23, 121.47),
+    "hangzhou": (30.27, 120.15),
+    "shenzhen": (22.54, 114.06),
+    "guangzhou": (23.13, 113.26),
+    "hong kong": (22.32, 114.17),
+    "macau": (22.20, 113.54),
+    "taipei": (25.03, 121.57),
+    "jeju": (33.50, 126.53),
+    "daegu": (35.87, 128.60),
+    "busan": (35.18, 129.08),
+    "bangkok": (13.76, 100.50),
+    "mumbai": (19.08, 72.88),
+    "new delhi": (28.61, 77.21),
+    "delhi": (28.61, 77.21),
+    "bangalore": (12.97, 77.59),
+    "auckland": (-36.85, 174.76),
+    "melbourne": (-37.81, 144.96),
+    "brisbane": (-27.47, 153.03),
 }
 
 import re as _re

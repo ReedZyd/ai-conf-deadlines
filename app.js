@@ -58,10 +58,16 @@ const I18N = {
 const CAT_I18N = {
   "AI 三大会": "Top-3 AI",
   "ARR (ACL Rolling Review)": "ARR (ACL Rolling Review)",
+  "NLP": "NLP",
   "综合 AI": "General AI",
   "多智能体": "Multi-Agent",
   "CV 三大会": "Top-3 CV",
+  "其他 CV/视觉": "More CV / Vision",
   "Robotics": "Robotics",
+  "机器学习/ML": "Machine Learning",
+  "数据挖掘/检索": "Data Mining / IR",
+  "图形/语音/多媒体": "Graphics / Speech / MM",
+  "Web/交叉应用": "Web / Applications",
 };
 
 let lang = localStorage.getItem("lang") === "en" ? "en" : "zh";

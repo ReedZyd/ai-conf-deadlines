@@ -34,9 +34,12 @@ function fmt(iso) {
     { year: "numeric", month: "short", day: "numeric" });
 }
 
+const LABEL_ZOOM = 5;   // 放大到此级别才常驻显示标签，否则悬停显示
+
 function draw() {
   markers.forEach((m) => map.removeLayer(m));
   markers = [];
+  const permanent = map.getZoom() >= LABEL_ZOOM;
   // 同城轻微散开，避免重叠
   const seen = {};
   for (const c of located) {
@@ -45,7 +48,7 @@ function draw() {
     const n = seen[k] = (seen[k] || 0) + 1;
     const off = (n - 1) * 0.6;
     const m = L.circleMarker([c.lat + off, c.lon + off], {
-      radius: 8, color: "#fff", weight: 1.5,
+      radius: 7, color: "#fff", weight: 1.5,
       fillColor: colorOf(c.year), fillOpacity: 0.9,
     }).addTo(map);
     const conf = c.name.split(" ")[0];
@@ -58,16 +61,23 @@ function draw() {
       dateLine +
       `${dlLabel}: ${fmt(c.deadline)}`
     );
-    // 常驻标签：不点击也能看到「会议 · 时间 · 地点」
+    // 标签：缩小时悬停显示、放大后常驻显示「会议 · 时间 · 地点」
     const labelDate = c.venue_date ? `<br><span class="lbl-date">${c.venue_date}</span>` : "";
     const city = (c.venue || c.place || "").split(",")[0];
     m.bindTooltip(
       `<b>${title}</b>${labelDate}<br><span class="lbl-city">📍 ${city}</span>`,
-      { permanent: true, direction: "top", offset: [0, -6], className: "conf-label" }
+      { permanent, direction: "top", offset: [0, -6], className: "conf-label" }
     );
     markers.push(m);
   }
 }
+
+// 缩放跨越阈值时重建，切换标签常驻/悬停
+let _wasPermanent = null;
+map.on("zoomend", () => {
+  const perm = map.getZoom() >= LABEL_ZOOM;
+  if (perm !== _wasPermanent) { _wasPermanent = perm; draw(); }
+});
 
 function buildLegend() {
   const el = document.getElementById("yearLegend");
